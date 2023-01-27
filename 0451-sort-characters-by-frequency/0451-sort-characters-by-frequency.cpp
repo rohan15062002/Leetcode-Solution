@@ -11,9 +11,7 @@ public:
         }
         string str="";
         while(pq.empty()!=true){
-          string st;
-          st.insert(0,pq.top().first,pq.top().second);
-          str+=st;
+          str += string(pq.top().first,pq.top().second);
           pq.pop();
         }
         return str;
