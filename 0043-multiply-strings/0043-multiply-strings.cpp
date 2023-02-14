@@ -33,15 +33,18 @@ public:
       if(s=="0" || s1=="0")return "0";
       int n = max(s.size(),s1.size());
       int n1= min(s.size(),s1.size());
-      string ans="";
       vector<string> v;
+      
+      if(s.size()<s1.size()){
+        string s2=s;
+        s=s1;
+        s1=s2;
+      }
       reverse(s.begin(),s.end());
       reverse(s1.begin(),s1.end());
       
       
-      if(n==s.size()){
-        int cnt=0;
-        
+        int cnt=0; 
         for(int i=0;i<n1;i++){
           int carry=0;
           string str="";
@@ -56,38 +59,13 @@ public:
             str+=(carry+'0');
           }
           reverse(str.begin(),str.end());
-        //  cout<<str<<endl;
           v.push_back(str);
         }
-      }
       
-      else{
-        int cnt=0;
-        
-        for(int i=0;i<n1;i++){
-          int carry=0;
-          string str="";
-          str.append(cnt,'0');
-          for(int j=0;j<n;j++){
-            int sum = (s1[j]-'0')*(s[i]-'0')+carry;
-            carry=sum/10;
-            str+= (sum%10+'0');
-          }
-          cnt++;
-          if(carry!=0){
-            str+=(carry+'0');
-          }
-          reverse(str.begin(),str.end());
-         // cout<<str<<endl;
-          v.push_back(str);
-        }
-      }
       
-      //string ans1="";
-      ans+=v[0];
+      string ans=v[0];
       for(int i=1;i<v.size();i++){
          ans = addStrings(v[i],ans);
-         //cout<<ans<<endl;
       }
       return ans;
       
